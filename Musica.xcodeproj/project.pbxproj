@@ -7,18 +7,50 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		026DCD252AD07C4F000705B8 /* MusicaIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026DCD242AD07C4E000705B8 /* MusicaIcon.swift */; };
+		029443C72ACA571B00F54609 /* SwiftData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029443C62ACA571B00F54609 /* SwiftData.swift */; };
+		029443C92ACB7BA300F54609 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029443C82ACB7BA300F54609 /* AudioManager.swift */; };
 		02DD86A42AC904F700B1009D /* MusicaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86A32AC904F700B1009D /* MusicaApp.swift */; };
 		02DD86A62AC904F700B1009D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86A52AC904F700B1009D /* ContentView.swift */; };
 		02DD86A82AC904F800B1009D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02DD86A72AC904F800B1009D /* Assets.xcassets */; };
 		02DD86AB2AC904F800B1009D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02DD86AA2AC904F800B1009D /* Preview Assets.xcassets */; };
+		02DD86B22AC9050900B1009D /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86B12AC9050900B1009D /* File.swift */; };
+		02DD86B42AC9079900B1009D /* FileListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86B32AC9079900B1009D /* FileListView.swift */; };
+		02DD86B62AC907A200B1009D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86B52AC907A200B1009D /* SettingsView.swift */; };
+		02DD86B82AC9088500B1009D /* FileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86B72AC9088500B1009D /* FileCell.swift */; };
+		02DD86BA2AC9211200B1009D /* EditFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86B92AC9211200B1009D /* EditFileView.swift */; };
+		02DD86BC2AC9217100B1009D /* TextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86BB2AC9217100B1009D /* TextCell.swift */; };
+		02DD86BF2AC926F500B1009D /* ColorPickerCdll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86BE2AC926F500B1009D /* ColorPickerCdll.swift */; };
+		02DD86C12AC9542700B1009D /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86C02AC9542700B1009D /* CustomColors.swift */; };
+		02DD86C32AC9D98F00B1009D /* CustomViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86C22AC9D98F00B1009D /* CustomViewCell.swift */; };
+		02DD86C52AC9D9E800B1009D /* SelectFileIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86C42AC9D9E800B1009D /* SelectFileIconView.swift */; };
+		02DD86C72AC9DA3B00B1009D /* SymbolData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86C62AC9DA3B00B1009D /* SymbolData.swift */; };
+		02DD86C92AC9DB9700B1009D /* LinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86C82AC9DB9700B1009D /* LinkCell.swift */; };
+		02DD86CB2ACA040F00B1009D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86CA2ACA040F00B1009D /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		026DCD242AD07C4E000705B8 /* MusicaIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicaIcon.swift; sourceTree = "<group>"; };
+		029443C62ACA571B00F54609 /* SwiftData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftData.swift; sourceTree = "<group>"; };
+		029443C82ACB7BA300F54609 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		02DD86A02AC904F700B1009D /* Musica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Musica.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02DD86A32AC904F700B1009D /* MusicaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicaApp.swift; sourceTree = "<group>"; };
 		02DD86A52AC904F700B1009D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		02DD86A72AC904F800B1009D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02DD86AA2AC904F800B1009D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		02DD86B12AC9050900B1009D /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		02DD86B32AC9079900B1009D /* FileListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListView.swift; sourceTree = "<group>"; };
+		02DD86B52AC907A200B1009D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		02DD86B72AC9088500B1009D /* FileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCell.swift; sourceTree = "<group>"; };
+		02DD86B92AC9211200B1009D /* EditFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFileView.swift; sourceTree = "<group>"; };
+		02DD86BB2AC9217100B1009D /* TextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCell.swift; sourceTree = "<group>"; };
+		02DD86BE2AC926F500B1009D /* ColorPickerCdll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerCdll.swift; sourceTree = "<group>"; };
+		02DD86C02AC9542700B1009D /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
+		02DD86C22AC9D98F00B1009D /* CustomViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewCell.swift; sourceTree = "<group>"; };
+		02DD86C42AC9D9E800B1009D /* SelectFileIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFileIconView.swift; sourceTree = "<group>"; };
+		02DD86C62AC9DA3B00B1009D /* SymbolData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolData.swift; sourceTree = "<group>"; };
+		02DD86C82AC9DB9700B1009D /* LinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkCell.swift; sourceTree = "<group>"; };
+		02DD86CA2ACA040F00B1009D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +83,21 @@
 		02DD86A22AC904F700B1009D /* Musica */ = {
 			isa = PBXGroup;
 			children = (
+				02DD86C62AC9DA3B00B1009D /* SymbolData.swift */,
 				02DD86A32AC904F700B1009D /* MusicaApp.swift */,
+				029443C82ACB7BA300F54609 /* AudioManager.swift */,
+				026DCD242AD07C4E000705B8 /* MusicaIcon.swift */,
 				02DD86A52AC904F700B1009D /* ContentView.swift */,
+				02DD86B72AC9088500B1009D /* FileCell.swift */,
+				02DD86B32AC9079900B1009D /* FileListView.swift */,
+				029443C62ACA571B00F54609 /* SwiftData.swift */,
+				02DD86B92AC9211200B1009D /* EditFileView.swift */,
+				02DD86C42AC9D9E800B1009D /* SelectFileIconView.swift */,
+				02DD86C02AC9542700B1009D /* CustomColors.swift */,
+				02DD86BD2AC9217900B1009D /* Cells */,
+				02DD86B52AC907A200B1009D /* SettingsView.swift */,
+				02DD86B12AC9050900B1009D /* File.swift */,
+				02DD86CC2ACA041300B1009D /* Extensions */,
 				02DD86A72AC904F800B1009D /* Assets.xcassets */,
 				02DD86A92AC904F800B1009D /* Preview Content */,
 			);
@@ -65,6 +110,25 @@
 				02DD86AA2AC904F800B1009D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		02DD86BD2AC9217900B1009D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				02DD86BB2AC9217100B1009D /* TextCell.swift */,
+				02DD86C82AC9DB9700B1009D /* LinkCell.swift */,
+				02DD86BE2AC926F500B1009D /* ColorPickerCdll.swift */,
+				02DD86C22AC9D98F00B1009D /* CustomViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		02DD86CC2ACA041300B1009D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				02DD86CA2ACA040F00B1009D /* Color.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +201,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02DD86B62AC907A200B1009D /* SettingsView.swift in Sources */,
+				029443C72ACA571B00F54609 /* SwiftData.swift in Sources */,
+				02DD86B42AC9079900B1009D /* FileListView.swift in Sources */,
+				029443C92ACB7BA300F54609 /* AudioManager.swift in Sources */,
+				02DD86BA2AC9211200B1009D /* EditFileView.swift in Sources */,
+				02DD86C52AC9D9E800B1009D /* SelectFileIconView.swift in Sources */,
+				02DD86C32AC9D98F00B1009D /* CustomViewCell.swift in Sources */,
+				02DD86C92AC9DB9700B1009D /* LinkCell.swift in Sources */,
 				02DD86A62AC904F700B1009D /* ContentView.swift in Sources */,
+				02DD86BF2AC926F500B1009D /* ColorPickerCdll.swift in Sources */,
+				026DCD252AD07C4F000705B8 /* MusicaIcon.swift in Sources */,
+				02DD86CB2ACA040F00B1009D /* Color.swift in Sources */,
+				02DD86B82AC9088500B1009D /* FileCell.swift in Sources */,
+				02DD86C12AC9542700B1009D /* CustomColors.swift in Sources */,
+				02DD86C72AC9DA3B00B1009D /* SymbolData.swift in Sources */,
+				02DD86B22AC9050900B1009D /* File.swift in Sources */,
+				02DD86BC2AC9217100B1009D /* TextCell.swift in Sources */,
 				02DD86A42AC904F700B1009D /* MusicaApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

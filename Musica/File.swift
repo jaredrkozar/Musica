@@ -6,3 +6,21 @@
 //
 
 import Foundation
+import SwiftData
+
+@Model
+class File {
+    var title: String
+    var dateAdded: Date
+    var path: String
+    var color: CustomColors
+    var iconName: String
+    
+    init(title: String, path: String, color: CustomColors, iconName: String) {
+        self.title = title
+        self.dateAdded = Date()
+        self.path = path
+        self.color = color
+        self.iconName = iconName
+    }
+}

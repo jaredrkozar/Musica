@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import SwiftData
+
 
 @main
 struct MusicaApp: App {
@@ -13,5 +15,6 @@ struct MusicaApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: File.self)
     }
 }

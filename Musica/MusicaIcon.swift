@@ -9,7 +9,11 @@ import SwiftUI
 
 struct MusicaIcon: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            RoundedRectangle(cornerRadius: 29.0)
+                .fill(Color.red.gradient)
+                .frame(width: 200.0, height: 200.0, alignment: .bottom)
+        }
     }
 }
 

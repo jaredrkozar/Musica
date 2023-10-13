@@ -6,3 +6,12 @@
 //
 
 import Foundation
+import SwiftUI
+
+struct SwiftDataStack {
+    @Environment(\.modelContext) var modelContext
+    
+    func saveFile(file: File) {
+        modelContext.insert(file)
+    }
+}
