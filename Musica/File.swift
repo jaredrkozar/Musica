@@ -24,3 +24,9 @@ class File {
         self.iconName = iconName
     }
 }
+
+extension File {
+    func returnFilePath() -> String {
+        return URL(filePath: path, directoryHint: .notDirectory, relativeTo: .documentsDirectory).lastPathComponent.removingPercentEncoding!
+    }
+}

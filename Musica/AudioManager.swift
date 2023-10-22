@@ -6,9 +6,7 @@
 //  Copyright © 2020 codecontrive. All rights reserved.
 //
 
-import UIKit
 import AVFoundation
-import MediaPlayer
 import Combine
 
 enum PlayerState {
@@ -17,29 +15,27 @@ enum PlayerState {
     case noTrack
 }
 
-class AudioManager: ObservableObject {
+class AudioManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
     
     @Published var playerState: PlayerState = .noTrack
     
-    var player: AVAudioPlayer!
+    var player = AVAudioPlayer()
     
-    func play(playable: URL) {
-
+    func play(with url: URL) {
         do {
-//            try AVAudioSession.sharedInstance().setCategory(.playback)
-//            try AVAudioSession.sharedInstance().setActive(true)
-            if playerState == .playing {
-                player.stop()
+            let isReachable = try url.checkResourceIsReachable()
+            if isReachable {
+                self.player = try AVAudioPlayer(contentsOf: url)
+                self.player.prepareToPlay()
+                self.player.volume = 1.0
+                self.player.delegate = self
+                try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+                 try AVAudioSession.sharedInstance().setActive(true)
+                
+                self.player.play()
             }
-            
-            player = try AVAudioPlayer(contentsOf: playable)
-            player.volume = 1.0
-            player.prepareToPlay()
-            player.play()
-            playerState = .playing
-        } catch {
-            print("The track isnt playing right now")
-            playerState = .noTrack
+        } catch let error {
+            print(error.localizedDescription)
         }
     }
     

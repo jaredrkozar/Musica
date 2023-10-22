@@ -21,7 +21,7 @@ struct FileListView: View {
             List(files) { file in
                 FileCell(file: file)
                     .onTapGesture {
-                        audioManager.play(playable: URL(string: file.path)!)
+                        audioManager.play(with:  URL(filePath: file.returnFilePath(), directoryHint: .notDirectory, relativeTo: .documentsDirectory))
                     }
                 .swipeActions(edge: .leading, allowsFullSwipe: true) {
                     Button(role: .none) {
@@ -32,6 +32,11 @@ struct FileListView: View {
                 }
                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                     Button(role: .destructive) {
+                        do {
+                            try FileManager.default.removeItem(at: URL(filePath: file.returnFilePath(), directoryHint: .notDirectory, relativeTo: .documentsDirectory))
+                        } catch let error {
+                            print("Error: \(error.localizedDescription)")
+                        }
                         
                         modelContext.delete(file)
                     } label: {

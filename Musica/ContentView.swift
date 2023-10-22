@@ -13,7 +13,7 @@ struct ContentView: View {
             TabView {
                 FileListView()
                     .tabItem {
-                        Label("Tab1", systemImage: "star")
+                        Label("Files", systemImage: "star")
                     }
                 SettingsView()
                     .tabItem {

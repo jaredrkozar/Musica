@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct EditFileView: View {
     @Environment(\.modelContext) var modelContext
@@ -54,7 +55,7 @@ struct CreateFileView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .confirmationAction) {
                     Button {
-                        let newFile = File(title: name, path: filePath.absoluteString, color: iconColor, iconName: iconName)
+                        let newFile = File(title: name, path: filePath.convertToCorrectPath(), color: iconColor, iconName: iconName)
                         modelContext.insert(newFile)
                         dismiss()
                     } label: {
@@ -95,13 +96,41 @@ struct FilePropertiesView: View {
 }
 
 extension URL {
+    
+    static var documentDirectory: URL {
+        return FileManager
+            .default
+            .urls(for: .documentDirectory, in: .userDomainMask)[0]
+    }
+    
     func convertToCorrectPath() -> String {
-        let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        
-        let musicPath = documentsUrl.appendingPathComponent("musica")
-        
-        return "\(musicPath)/\(self.lastPathComponent)"
+        let destinationURL = URL.documentDirectory.appendingPathComponent(self.lastPathComponent, conformingTo: self.pathExtension.getExtension())
+        let canAccessURL = self.startAccessingSecurityScopedResource()
+        if canAccessURL {
+            do {
+                try FileManager.default.copyItem(at: self, to: destinationURL)
+                self.stopAccessingSecurityScopedResource()
+            } catch (let error) {
+                print("Cannot copy item to directory: \(error)")
+            }
+        } else {
+            print("You cannot access this URL right now")
+        }
+        print("Destination URL \(destinationURL.absoluteString)")
+        return destinationURL.absoluteString
+
     }
 }
 
-
+extension String {
+    func getExtension() -> UTType {
+        switch self {
+        case "mp3":
+            return .mp3
+        case "wav":
+            return .wav
+        default:
+            return .mp3
+        }
+    }
+}

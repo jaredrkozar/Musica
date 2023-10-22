@@ -27,6 +27,7 @@
 		02DD86C72AC9DA3B00B1009D /* SymbolData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86C62AC9DA3B00B1009D /* SymbolData.swift */; };
 		02DD86C92AC9DB9700B1009D /* LinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86C82AC9DB9700B1009D /* LinkCell.swift */; };
 		02DD86CB2ACA040F00B1009D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86CA2ACA040F00B1009D /* Color.swift */; };
+		02FE7B362AE31CF80011FDB5 /* SelectIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FE7B352AE31CF80011FDB5 /* SelectIconView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		02DD86C62AC9DA3B00B1009D /* SymbolData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolData.swift; sourceTree = "<group>"; };
 		02DD86C82AC9DB9700B1009D /* LinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkCell.swift; sourceTree = "<group>"; };
 		02DD86CA2ACA040F00B1009D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		02FE7B352AE31CF80011FDB5 /* SelectIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectIconView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				02DD86C62AC9DA3B00B1009D /* SymbolData.swift */,
+				02FE7B352AE31CF80011FDB5 /* SelectIconView.swift */,
 				02DD86A32AC904F700B1009D /* MusicaApp.swift */,
 				029443C82ACB7BA300F54609 /* AudioManager.swift */,
 				026DCD242AD07C4E000705B8 /* MusicaIcon.swift */,
@@ -212,6 +215,7 @@
 				02DD86A62AC904F700B1009D /* ContentView.swift in Sources */,
 				02DD86BF2AC926F500B1009D /* ColorPickerCdll.swift in Sources */,
 				026DCD252AD07C4F000705B8 /* MusicaIcon.swift in Sources */,
+				02FE7B362AE31CF80011FDB5 /* SelectIconView.swift in Sources */,
 				02DD86CB2ACA040F00B1009D /* Color.swift in Sources */,
 				02DD86B82AC9088500B1009D /* FileCell.swift in Sources */,
 				02DD86C12AC9542700B1009D /* CustomColors.swift in Sources */,
