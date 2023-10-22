@@ -13,7 +13,7 @@ struct FileListView: View {
     @Query var files: [File]
     @State var selectedFile: File?
     @StateObject var model = FileListModel()
-    @StateObject var audioManager = AudioManager()
+    @EnvironmentObject var audioManager: AudioManager
     @Environment(\.modelContext) var modelContext
     
     var body: some View {
@@ -21,7 +21,7 @@ struct FileListView: View {
             List(files) { file in
                 FileCell(file: file)
                     .onTapGesture {
-                        audioManager.play(with:  URL(filePath: file.returnFilePath(), directoryHint: .notDirectory, relativeTo: .documentsDirectory))
+                        audioManager.currentFile = file
                     }
                 .swipeActions(edge: .leading, allowsFullSwipe: true) {
                     Button(role: .none) {

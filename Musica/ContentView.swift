@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var audioManager: AudioManager
+    
     var body: some View {
         ZStack {
             TabView {
@@ -20,13 +22,13 @@ struct ContentView: View {
                         Label("Tab2", systemImage: "star")
                     }
             }
-                VStack {
+            if audioManager.playerState != .noTrack {
+                VStack() {
                     Spacer()
-                    Rectangle()
-                        .frame(maxWidth: .infinity, maxHeight: 70)
-                        .foregroundColor(.red)
-                        .padding(.bottom, 60)
+                    MiniplayerView()
+
                 }
+            }
         }
     }
 }

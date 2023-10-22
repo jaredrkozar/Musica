@@ -11,10 +11,12 @@ import SwiftData
 
 @main
 struct MusicaApp: App {
+    @StateObject var audioManager = AudioManager()
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
         .modelContainer(for: File.self)
+        .environmentObject(audioManager)
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0256E5522AE4F0E700776CC8 /* MiniplayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256E5512AE4F0E700776CC8 /* MiniplayerView.swift */; };
 		026DCD252AD07C4F000705B8 /* MusicaIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026DCD242AD07C4E000705B8 /* MusicaIcon.swift */; };
 		029443C72ACA571B00F54609 /* SwiftData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029443C62ACA571B00F54609 /* SwiftData.swift */; };
 		029443C92ACB7BA300F54609 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029443C82ACB7BA300F54609 /* AudioManager.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0256E5512AE4F0E700776CC8 /* MiniplayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniplayerView.swift; sourceTree = "<group>"; };
 		026DCD242AD07C4E000705B8 /* MusicaIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicaIcon.swift; sourceTree = "<group>"; };
 		029443C62ACA571B00F54609 /* SwiftData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftData.swift; sourceTree = "<group>"; };
 		029443C82ACB7BA300F54609 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				029443C82ACB7BA300F54609 /* AudioManager.swift */,
 				026DCD242AD07C4E000705B8 /* MusicaIcon.swift */,
 				02DD86A52AC904F700B1009D /* ContentView.swift */,
+				0256E5512AE4F0E700776CC8 /* MiniplayerView.swift */,
 				02DD86B72AC9088500B1009D /* FileCell.swift */,
 				02DD86B32AC9079900B1009D /* FileListView.swift */,
 				029443C62ACA571B00F54609 /* SwiftData.swift */,
@@ -208,6 +211,7 @@
 				029443C72ACA571B00F54609 /* SwiftData.swift in Sources */,
 				02DD86B42AC9079900B1009D /* FileListView.swift in Sources */,
 				029443C92ACB7BA300F54609 /* AudioManager.swift in Sources */,
+				0256E5522AE4F0E700776CC8 /* MiniplayerView.swift in Sources */,
 				02DD86BA2AC9211200B1009D /* EditFileView.swift in Sources */,
 				02DD86C52AC9D9E800B1009D /* SelectFileIconView.swift in Sources */,
 				02DD86C32AC9D98F00B1009D /* CustomViewCell.swift in Sources */,

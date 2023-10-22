@@ -21,7 +21,19 @@ class AudioManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
     
     var player = AVAudioPlayer()
     
-    func play(with url: URL) {
+    private var file: File?
+    
+    public var currentFile: File {
+         get {
+             return self.file!;
+         }
+         set {
+             file = newValue
+             play(with: URL(filePath: newValue.returnFilePath(), directoryHint: .notDirectory, relativeTo: .documentsDirectory))
+         }
+     }
+    
+    private func play(with url: URL) {
         do {
             let isReachable = try url.checkResourceIsReachable()
             if isReachable {
@@ -29,6 +41,7 @@ class AudioManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
                 self.player.prepareToPlay()
                 self.player.volume = 1.0
                 self.player.delegate = self
+                self.playerState = .playing
                 try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
                  try AVAudioSession.sharedInstance().setActive(true)
                 
@@ -39,12 +52,15 @@ class AudioManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
         }
     }
     
-    func pause() {
+    public func togglePlayPaused() {
+        self.playerState == .playing ? pause() : unpause()
+    }
+    private func pause() {
         player.pause()
         playerState = .paused
     }
     
-    func unpause() {
+    private func unpause() {
         player.play()
         playerState = .playing
     }
