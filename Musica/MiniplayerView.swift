@@ -12,9 +12,9 @@ struct MiniplayerView: View {
     @EnvironmentObject var audioManager: AudioManager
     var body: some View {
         HStack {
-            Icon(color: audioManager.currentFile.color.color, name: audioManager.currentFile.iconName, iconSize: .medium)
+            Icon(color: (audioManager.currentFile?.color.color)!, iconState: .standardIcon(iconName: audioManager.currentFile!.iconName), iconSize: .medium)
             
-            Text(audioManager.currentFile.title)
+            Text(audioManager.currentFile!.title)
                 .bold()
                 .frame(maxWidth: 200, alignment: .leading)
             

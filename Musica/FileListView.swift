@@ -19,7 +19,7 @@ struct FileListView: View {
     var body: some View {
         NavigationStack {
             List(files) { file in
-                FileCell(file: file)
+                FileCell(file: file, isCurrentFile: $audioManager.currentFile)
                     .onTapGesture {
                         audioManager.currentFile = file
                     }

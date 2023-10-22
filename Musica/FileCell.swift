@@ -10,29 +10,50 @@ import SwiftUI
 
 struct FileCell: View {
     var file: File
+    @Binding var isCurrentFile: File?
+    
+    var currentFile: Bool {
+        if isCurrentFile != nil {
+            return file == isCurrentFile
+        } else {
+            return false
+        }
+    }
     
     var body: some View {
         HStack {
             ZStack {
-                Icon(color: file.color.color, name: file.iconName, iconSize: .small)
+                Icon(color: file.color.color, iconState: .standardIcon(iconName: file.iconName), iconSize: .small)
+                    .overlay {
+                        if currentFile == true {
+                            Icon(color: .primary.opacity(0.9), iconState: .currentlyPlaying, iconSize: .small)
+                        }
+                    }
             }
             
             VStack(alignment: .leading) {
                 Text(file.title)
+                    .fontWeight(currentFile ? .medium : .regular)
                 
                 Text(file.dateAdded, style: .date)
                     .foregroundStyle(.gray)
+                    .fontWeight(currentFile ? .medium : .regular)
             }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
         .contentShape(Rectangle())
     }
 }
 
 struct Icon: View {
     var color: Color
-    var name: String
+    var iconState: IconPlaying
     var iconSize: IconSize
     
+    enum IconPlaying {
+        case standardIcon(iconName: String)
+        case currentlyPlaying
+    }
     enum IconSize: CGFloat {
         case small
         case medium
@@ -74,31 +95,24 @@ struct Icon: View {
     
     var body: some View {
         ZStack {
-            Image(systemName: name)
-                .foregroundStyle(color)
-                .aspectRatio(contentMode: .fit)
-                .fontWeight(.semibold)
-                .font(.system(size: iconSize.iconSize, weight: .light))
+            switch iconState {
+            case .standardIcon(let iconName):
+                Image(systemName: iconName)
+                    .foregroundStyle(color)
+                    .aspectRatio(contentMode: .fit)
+                    .fontWeight(.semibold)
+                    .font(.system(size: iconSize.iconSize, weight: .light))
+            case .currentlyPlaying:
+                Image(systemName: "waveform")
+                    .iconStyle(color: .white, size: iconSize.iconSize)
+                    .symbolEffect(.pulse, options: .repeating, isActive: true)
+            }
             
             RoundedRectangle(cornerRadius: iconSize.cornerRadius)
                 .foregroundStyle(color)
                 .opacity(0.2)
         }
         .frame(width: iconSize.rectangleWidthHeight, height: iconSize.rectangleWidthHeight, alignment: .leading)
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        HStack {
-            Icon(color: .red, name: "pin", iconSize: .medium)
-            Icon(color: .orange, name: "pin", iconSize: .medium)
-            Icon(color: .yellow, name: "pin", iconSize: .medium)
-            Icon(color: .green, name: "pin", iconSize: .medium)
-            Icon(color: .blue, name: "pin", iconSize: .medium)
-            Icon(color: .purple, name: "pin", iconSize: .medium)
-            Icon(color: .gray, name: "pin", iconSize: .medium)
-        }
     }
 }
 
@@ -134,5 +148,23 @@ extension Color {
         }
 
         self.init(red: r, green: g, blue: b, opacity: a)
+    }
+}
+
+extension Image {
+    func iconStyle(color: Color, size: CGFloat) -> some View {
+        modifier(Title(color: color, iconSize: size))
+    }
+}
+
+struct Title: ViewModifier {
+    let color: Color
+    let iconSize: CGFloat
+    
+    func body(content: Content) -> some View {
+        content
+            .aspectRatio(contentMode: .fit)
+            .fontWeight(.semibold)
+            .font(.system(size: iconSize, weight: .light))
     }
 }

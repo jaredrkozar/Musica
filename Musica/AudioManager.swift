@@ -23,13 +23,13 @@ class AudioManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
     
     private var file: File?
     
-    public var currentFile: File {
+    public var currentFile: File? {
          get {
-             return self.file!;
+             return self.file;
          }
          set {
              file = newValue
-             play(with: URL(filePath: newValue.returnFilePath(), directoryHint: .notDirectory, relativeTo: .documentsDirectory))
+             play(with: URL(filePath: (newValue?.returnFilePath())!, directoryHint: .notDirectory, relativeTo: .documentsDirectory))
          }
      }
     
@@ -55,6 +55,7 @@ class AudioManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
     public func togglePlayPaused() {
         self.playerState == .playing ? pause() : unpause()
     }
+    
     private func pause() {
         player.pause()
         playerState = .paused
@@ -69,12 +70,5 @@ class AudioManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
         player.stop()
         playerState = .noTrack
     }
-    
-    func toggle() {
-        if (playerState == .playing) {
-            pause()
-        } else if (playerState == .paused) {
-            unpause()
-        }
-    }
 }
+
