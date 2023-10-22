@@ -61,6 +61,7 @@ struct CreateFileView: View {
                     } label: {
                         Text("Save")
                     }
+                    .disabled(name.isEmpty)
                 }
                 
                 ToolbarItemGroup(placement: .topBarLeading) {

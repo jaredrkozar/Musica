@@ -10,12 +10,12 @@ import SwiftUI
 
 struct FileCell: View {
     var file: File
+    
     var body: some View {
         HStack {
             ZStack {
-                Icon(color: file.color.color, name: file.iconName)
+                Icon(color: file.color.color, name: file.iconName, iconSize: .small)
             }
-            .frame(width: 40.0, height: 40.0, alignment: .leading)
             
             VStack(alignment: .leading) {
                 Text(file.title)
@@ -31,6 +31,46 @@ struct FileCell: View {
 struct Icon: View {
     var color: Color
     var name: String
+    var iconSize: IconSize
+    
+    enum IconSize: CGFloat {
+        case small
+        case medium
+        case large
+        
+        var rectangleWidthHeight: CGFloat {
+            switch self {
+            case .small:
+                return 40.0
+            case .medium:
+                return 55.0
+            case .large:
+                return 100.0
+            }
+        }
+        
+        var iconSize: CGFloat {
+            switch self {
+            case .small:
+                return 25.0
+            case .medium:
+                return 35.0
+            case .large:
+                return 65.0
+            }
+        }
+        
+        var cornerRadius: CGFloat {
+            switch self {
+            case .small:
+                return 7.0
+            case .medium:
+                return 12.0
+            case .large:
+                return 25.0
+            }
+        }
+    }
     
     var body: some View {
         ZStack {
@@ -38,24 +78,26 @@ struct Icon: View {
                 .foregroundStyle(color)
                 .aspectRatio(contentMode: .fit)
                 .fontWeight(.semibold)
+                .font(.system(size: iconSize.iconSize, weight: .light))
             
-            RoundedRectangle(cornerRadius: 7.0)
+            RoundedRectangle(cornerRadius: iconSize.cornerRadius)
                 .foregroundStyle(color)
                 .opacity(0.2)
         }
+        .frame(width: iconSize.rectangleWidthHeight, height: iconSize.rectangleWidthHeight, alignment: .leading)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         HStack {
-            Icon(color: .red, name: "pin")
-            Icon(color: .orange, name: "pin")
-            Icon(color: .yellow, name: "pin")
-            Icon(color: .green, name: "pin")
-            Icon(color: .blue, name: "pin")
-            Icon(color: .purple, name: "pin")
-            Icon(color: .gray, name: "pin")
+            Icon(color: .red, name: "pin", iconSize: .medium)
+            Icon(color: .orange, name: "pin", iconSize: .medium)
+            Icon(color: .yellow, name: "pin", iconSize: .medium)
+            Icon(color: .green, name: "pin", iconSize: .medium)
+            Icon(color: .blue, name: "pin", iconSize: .medium)
+            Icon(color: .purple, name: "pin", iconSize: .medium)
+            Icon(color: .gray, name: "pin", iconSize: .medium)
         }
     }
 }
