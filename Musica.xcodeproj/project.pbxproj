@@ -34,6 +34,7 @@
 /* Begin PBXFileReference section */
 		0256E5512AE4F0E700776CC8 /* MiniplayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniplayerView.swift; sourceTree = "<group>"; };
 		026DCD242AD07C4E000705B8 /* MusicaIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicaIcon.swift; sourceTree = "<group>"; };
+		0286B0082AE704F00003D1C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		029443C62ACA571B00F54609 /* SwiftData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftData.swift; sourceTree = "<group>"; };
 		029443C82ACB7BA300F54609 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		02DD86A02AC904F700B1009D /* Musica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Musica.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +88,7 @@
 		02DD86A22AC904F700B1009D /* Musica */ = {
 			isa = PBXGroup;
 			children = (
+				0286B0082AE704F00003D1C5 /* Info.plist */,
 				02DD86C62AC9DA3B00B1009D /* SymbolData.swift */,
 				02FE7B352AE31CF80011FDB5 /* SelectIconView.swift */,
 				02DD86A32AC904F700B1009D /* MusicaApp.swift */,
@@ -363,6 +365,7 @@
 				DEVELOPMENT_TEAM = 7UHNX49SSD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Musica/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -392,6 +395,7 @@
 				DEVELOPMENT_TEAM = 7UHNX49SSD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Musica/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

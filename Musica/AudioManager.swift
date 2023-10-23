@@ -8,6 +8,7 @@
 
 import AVFoundation
 import Combine
+import MediaPlayer
 
 enum PlayerState {
     case playing
@@ -42,10 +43,16 @@ class AudioManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
                 self.player.volume = 1.0
                 self.player.delegate = self
                 self.playerState = .playing
-                try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
-                 try AVAudioSession.sharedInstance().setActive(true)
-                
+                let audioSession = AVAudioSession.sharedInstance()
+                do {
+                    try audioSession.setCategory(.playback, mode: .default, options: [])
+                    try audioSession.setActive(true)
+                } catch let error {
+                    print("Error setting up audio session: \(error.localizedDescription)")
+                }
+
                 self.player.play()
+                setupNowPlaying()
             }
         } catch let error {
             print(error.localizedDescription)
@@ -69,5 +76,40 @@ class AudioManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
     func stop() {
         player.stop()
         playerState = .noTrack
+    }
+    
+    func setupNowPlaying() {
+        // Define Now Playing Info
+        var nowPlayingInfo = [String : Any]()
+        nowPlayingInfo[MPMediaItemPropertyTitle] = file?.title
+
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime
+        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = player.duration
+        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = 1.0
+        MPRemoteCommandCenter.shared().togglePlayPauseCommand.isEnabled = true
+        MPRemoteCommandCenter.shared().togglePlayPauseCommand.addTarget(handler: togglePlayPause)
+        
+        MPRemoteCommandCenter.shared().changePlaybackPositionCommand.isEnabled = true
+        MPRemoteCommandCenter.shared().changePlaybackPositionCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+
+            if let changePlaybackPositionCommandEvent = event as? MPChangePlaybackPositionCommandEvent
+            {
+                let positionTime = changePlaybackPositionCommandEvent.positionTime
+                self.player.currentTime = positionTime
+                return .success
+            }
+            return .commandFailed
+        }
+        
+        // Set the metadata
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+        MPNowPlayingInfoCenter.default().playbackState = .playing
+        UIApplication.shared.beginReceivingRemoteControlEvents()
+    }
+    
+    func togglePlayPause(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
+        togglePlayPaused()
+         // Handle remote event by updating your app's state here
+         return .success // or .commandFailed
     }
 }
