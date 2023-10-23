@@ -29,6 +29,13 @@ struct FileListView: View {
                     } label: {
                         Label("Edit", systemImage: "pencil.line")
                     }
+                    .tint(.blue)
+                    
+                    
+                    ShareLink(item: URL(filePath: file.returnFilePath(), directoryHint: .notDirectory, relativeTo: .documentsDirectory), subject: Text(file.title.removingPercentEncoding!)) {
+                        Label("Share", systemImage: "square.and.arrow.up")
+                    }
+                    .tint(.orange)
                 }
                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                     Button(role: .destructive) {

@@ -30,7 +30,3 @@ extension File {
         return URL(filePath: path, directoryHint: .notDirectory, relativeTo: .documentsDirectory).lastPathComponent.removingPercentEncoding!
     }
 }
-
-extension File: Equatable {
-    
-}
