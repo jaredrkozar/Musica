@@ -60,6 +60,7 @@ class AudioManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
     }
     
     public func togglePlayPaused() {
+        MPNowPlayingInfoCenter.default().nowPlayingInfo![MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime
         self.playerState == .playing ? pause() : unpause()
     }
     
@@ -90,16 +91,7 @@ class AudioManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
         MPRemoteCommandCenter.shared().togglePlayPauseCommand.addTarget(handler: togglePlayPause)
         
         MPRemoteCommandCenter.shared().changePlaybackPositionCommand.isEnabled = true
-        MPRemoteCommandCenter.shared().changePlaybackPositionCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
-
-            if let changePlaybackPositionCommandEvent = event as? MPChangePlaybackPositionCommandEvent
-            {
-                let positionTime = changePlaybackPositionCommandEvent.positionTime
-                self.player.currentTime = positionTime
-                return .success
-            }
-            return .commandFailed
-        }
+        MPRemoteCommandCenter.shared().changePlaybackPositionCommand.addTarget(handler: changeTimestamp)
         
         // Set the metadata
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
@@ -109,6 +101,15 @@ class AudioManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
     
     func togglePlayPause(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
         togglePlayPaused()
+         // Handle remote event by updating your app's state here
+         return .success // or .commandFailed
+    }
+    
+    func changeTimestamp(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
+        if let event = event as? MPChangePlaybackPositionCommandEvent {
+            player.currentTime = event.positionTime
+                }
+        
          // Handle remote event by updating your app's state here
          return .success // or .commandFailed
     }
