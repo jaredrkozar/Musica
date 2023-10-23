@@ -65,11 +65,14 @@ class AudioManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
     }
     
     private func pause() {
+        MPNowPlayingInfoCenter.default().nowPlayingInfo![MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime
+        
         player.pause()
         playerState = .paused
     }
     
     private func unpause() {
+        MPNowPlayingInfoCenter.default().nowPlayingInfo![MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime
         player.play()
         playerState = .playing
     }
@@ -87,6 +90,13 @@ class AudioManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
         nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime
         nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = player.duration
         nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = 1.0
+        
+        MPRemoteCommandCenter.shared().playCommand.isEnabled = true
+        MPRemoteCommandCenter.shared().playCommand.addTarget(handler: play)
+        
+        MPRemoteCommandCenter.shared().pauseCommand.isEnabled = true
+        MPRemoteCommandCenter.shared().pauseCommand.addTarget(handler: pause)
+        
         MPRemoteCommandCenter.shared().togglePlayPauseCommand.isEnabled = true
         MPRemoteCommandCenter.shared().togglePlayPauseCommand.addTarget(handler: togglePlayPause)
         
@@ -97,6 +107,18 @@ class AudioManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
         MPNowPlayingInfoCenter.default().playbackState = .playing
         UIApplication.shared.beginReceivingRemoteControlEvents()
+    }
+    
+    func play(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
+        unpause()
+         // Handle remote event by updating your app's state here
+         return .success // or .commandFailed
+    }
+    
+    func pause(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
+        pause()
+         // Handle remote event by updating your app's state here
+         return .success // or .commandFailed
     }
     
     func togglePlayPause(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
