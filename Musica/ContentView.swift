@@ -12,7 +12,6 @@ struct ContentView: View {
     @Environment(ViewModel.self) private var viewModel
     
     var body: some View {
-        @Bindable var viewModel = viewModel
         ZStack {
             TabView {
                 FileListView(sort: viewModel.sortMethod, searchString: viewModel.searchText, order: viewModel.sortDirection)

@@ -15,8 +15,8 @@ struct SortfilesButton: View {
         @Bindable var viewModel = viewModel
         Menu {
             Picker("Sort Order", selection: $viewModel.sortDirection) {
-                ForEach(SortDirection.allCases, id: \.self) { order in
-                    Text(order.asString)
+                ForEach([SortOrder.forward, SortOrder.reverse], id: \.self) { order in
+                    Text(order.name)
                 }
             }
             Picker("Sort By", selection: $viewModel.sortMethod) {
