@@ -17,7 +17,6 @@ import Observation
     
     var error: String = ""
     var showError: Bool = false
-    
     var showFileImportMenu: Bool = false
     
     enum Sheet: Hashable, Identifiable {

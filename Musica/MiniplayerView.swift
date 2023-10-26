@@ -13,8 +13,9 @@ struct MiniplayerView: View {
     var body: some View {
         HStack {
             Icon(color: (audioManager.currentFile?.color.color)!, iconState: .standardIcon(iconName: audioManager.currentFile!.iconName), iconSize: .medium)
-            
+                     
             Text(audioManager.currentFile!.title)
+                .lineLimit(1)
                 .bold()
                 .frame(maxWidth: 200, alignment: .leading)
             

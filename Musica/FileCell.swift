@@ -26,7 +26,7 @@ struct FileCell: View {
                 Icon(color: file.color.color, iconState: .standardIcon(iconName: file.iconName), iconSize: .small)
                     .overlay {
                         if currentFile == true {
-                            Icon(color: .primary.opacity(0.9), iconState: .currentlyPlaying, iconSize: .small)
+                            Icon(color: .black, iconState: .currentlyPlaying, iconSize: .small)
                         }
                     }
             }
@@ -50,10 +50,11 @@ struct Icon: View {
     var iconState: IconPlaying
     var iconSize: IconSize
     
-    enum IconPlaying {
+    enum IconPlaying: Equatable {
         case standardIcon(iconName: String)
         case currentlyPlaying
     }
+    
     enum IconSize: CGFloat {
         case small
         case medium
@@ -95,6 +96,10 @@ struct Icon: View {
     
     var body: some View {
         ZStack {
+            RoundedRectangle(cornerRadius: iconSize.cornerRadius)
+                .foregroundStyle(color)
+                .opacity(iconState == .currentlyPlaying ? 0.7 : 0.2)
+            
             switch iconState {
             case .standardIcon(let iconName):
                 Image(systemName: iconName)
@@ -107,10 +112,6 @@ struct Icon: View {
                     .iconStyle(color: .white, size: iconSize.iconSize)
                     .symbolEffect(.pulse, options: .repeating, isActive: true)
             }
-            
-            RoundedRectangle(cornerRadius: iconSize.cornerRadius)
-                .foregroundStyle(color)
-                .opacity(0.2)
         }
         .frame(width: iconSize.rectangleWidthHeight, height: iconSize.rectangleWidthHeight, alignment: .leading)
     }
