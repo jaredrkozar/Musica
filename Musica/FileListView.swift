@@ -63,6 +63,13 @@ struct FileListView: View {
                     }
                 }
            }
+            .overlay {
+                if !model.searchText.isEmpty && files.isEmpty {
+                    ContentUnavailableView.search
+                } else if files.isEmpty {
+                    ContentUnavailableView("No Files Found", systemImage: "waveform.slash", description: Text("Add some files by using +"))
+                }
+            }
             .searchable(text: $model.searchText, placement: .toolbar, prompt: Text("Serch files"))
             
             .toolbar {
