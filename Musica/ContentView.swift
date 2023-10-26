@@ -9,11 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var audioManager: AudioManager
+    @Environment(ViewModel.self) private var viewModel
     
     var body: some View {
+        @Bindable var viewModel = viewModel
         ZStack {
             TabView {
-                FileListView()
+                FileListView(sort: viewModel.sortMethod, searchString: viewModel.searchText, order: viewModel.sortDirection)
                     .tabItem {
                         Label("Files", systemImage: "star")
                     }

@@ -9,6 +9,20 @@ import Foundation
 import UIKit
 import SwiftUI
 
+enum SortMethods: String, CaseIterable {
+    case title
+    case date
+    
+    var asString: String { return self.rawValue.capitalized }
+}
+
+enum SortDirection: String, CaseIterable {
+    case ascending
+    case descending 
+    
+    var asString: String { return self.rawValue.capitalized }
+}
+
 enum CustomColors: Codable, CaseIterable, Identifiable {
     var id: Self {
           return self

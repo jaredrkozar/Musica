@@ -12,11 +12,23 @@ import SwiftData
 struct FileListView: View {
     @Query var files: [File]
     @State var selectedFile: File?
-    @StateObject var model = FileListModel()
+    @Environment(ViewModel.self) private var viewModel
     @EnvironmentObject var audioManager: AudioManager
     @Environment(\.modelContext) var modelContext
     
+    init(sort: SortMethods = .title, searchString: String = "", order: SortOrder = .forward) {
+        let predicate = File.predicate(searchText: searchString)
+        
+        switch sort {
+        case .title:
+            _files = Query(filter: predicate, sort: \.title, order: order)
+        case .date:
+            _files = Query(filter: predicate, sort: \.dateAdded, order: order)
+        }
+    }
+    
     var body: some View {
+        @Bindable var model = viewModel
         NavigationStack {
             List(files) { file in
                 FileCell(file: file, isCurrentFile: $audioManager.currentFile)
@@ -31,13 +43,13 @@ struct FileListView: View {
                     }
                     .tint(.blue)
                     
-                    
                     ShareLink(item: URL(filePath: file.returnFilePath(), directoryHint: .notDirectory, relativeTo: .documentsDirectory), subject: Text(file.title.removingPercentEncoding!)) {
                         Label("Share", systemImage: "square.and.arrow.up")
                     }
                     .tint(.orange)
                 }
                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                    
                     Button(role: .destructive) {
                         do {
                             try FileManager.default.removeItem(at: URL(filePath: file.returnFilePath(), directoryHint: .notDirectory, relativeTo: .documentsDirectory))
@@ -51,9 +63,13 @@ struct FileListView: View {
                     }
                 }
            }
+            .searchable(text: $model.searchText, placement: .toolbar, prompt: Text("Serch files"))
             
             .toolbar {
+                
                 ToolbarItemGroup(placement: .topBarTrailing) {
+                    SortfilesButton()
+                    
                     Button {
                         model.showFileImportMenu = true
                     } label: {
@@ -102,22 +118,13 @@ struct FileListView: View {
     }
 }
 
-class FileListModel: ObservableObject {
-    var error: String = ""
-    var showError: Bool = false
-    
-    @Published var showFileImportMenu: Bool = false
-    
-    enum Sheet: Hashable, Identifiable {
-        
-        case addFile(url: URL)
-        case editFile(file: File)
-        
-          var id: Self {
+extension File {
+    static func predicate(
+        searchText: String
+    ) -> Predicate<File> {
 
-              return self
-          }
+        return #Predicate<File> { quake in
+            (searchText.isEmpty || quake.title.contains(searchText))
+        }
     }
-    
-    @Published var presentedSheet: Sheet?
 }

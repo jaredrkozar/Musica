@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0256E5522AE4F0E700776CC8 /* MiniplayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256E5512AE4F0E700776CC8 /* MiniplayerView.swift */; };
 		026DCD252AD07C4F000705B8 /* MusicaIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026DCD242AD07C4E000705B8 /* MusicaIcon.swift */; };
+		0286B00C2AEAD5AD0003D1C5 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0286B00B2AEAD5AD0003D1C5 /* ViewModel.swift */; };
+		0286B00E2AEAD5CD0003D1C5 /* SortfilesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0286B00D2AEAD5CD0003D1C5 /* SortfilesButton.swift */; };
 		029443C72ACA571B00F54609 /* SwiftData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029443C62ACA571B00F54609 /* SwiftData.swift */; };
 		029443C92ACB7BA300F54609 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029443C82ACB7BA300F54609 /* AudioManager.swift */; };
 		02DD86A42AC904F700B1009D /* MusicaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86A32AC904F700B1009D /* MusicaApp.swift */; };
@@ -35,6 +37,8 @@
 		0256E5512AE4F0E700776CC8 /* MiniplayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniplayerView.swift; sourceTree = "<group>"; };
 		026DCD242AD07C4E000705B8 /* MusicaIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicaIcon.swift; sourceTree = "<group>"; };
 		0286B0082AE704F00003D1C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0286B00B2AEAD5AD0003D1C5 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		0286B00D2AEAD5CD0003D1C5 /* SortfilesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortfilesButton.swift; sourceTree = "<group>"; };
 		029443C62ACA571B00F54609 /* SwiftData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftData.swift; sourceTree = "<group>"; };
 		029443C82ACB7BA300F54609 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		02DD86A02AC904F700B1009D /* Musica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Musica.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +102,8 @@
 				0256E5512AE4F0E700776CC8 /* MiniplayerView.swift */,
 				02DD86B72AC9088500B1009D /* FileCell.swift */,
 				02DD86B32AC9079900B1009D /* FileListView.swift */,
+				0286B00B2AEAD5AD0003D1C5 /* ViewModel.swift */,
+				0286B00D2AEAD5CD0003D1C5 /* SortfilesButton.swift */,
 				029443C62ACA571B00F54609 /* SwiftData.swift */,
 				02DD86B92AC9211200B1009D /* EditFileView.swift */,
 				02DD86C42AC9D9E800B1009D /* SelectFileIconView.swift */,
@@ -222,6 +228,8 @@
 				02DD86BF2AC926F500B1009D /* ColorPickerCdll.swift in Sources */,
 				026DCD252AD07C4F000705B8 /* MusicaIcon.swift in Sources */,
 				02FE7B362AE31CF80011FDB5 /* SelectIconView.swift in Sources */,
+				0286B00E2AEAD5CD0003D1C5 /* SortfilesButton.swift in Sources */,
+				0286B00C2AEAD5AD0003D1C5 /* ViewModel.swift in Sources */,
 				02DD86CB2ACA040F00B1009D /* Color.swift in Sources */,
 				02DD86B82AC9088500B1009D /* FileCell.swift in Sources */,
 				02DD86C12AC9542700B1009D /* CustomColors.swift in Sources */,

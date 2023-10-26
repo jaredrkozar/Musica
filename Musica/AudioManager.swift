@@ -61,20 +61,17 @@ class AudioManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
     
     public func togglePlayPaused() {
         MPNowPlayingInfoCenter.default().nowPlayingInfo![MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime
-        self.playerState == .playing ? pause() : unpause()
-    }
-    
-    private func pause() {
-        MPNowPlayingInfoCenter.default().nowPlayingInfo![MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime
-        
-        player.pause()
-        playerState = .paused
-    }
-    
-    private func unpause() {
-        MPNowPlayingInfoCenter.default().nowPlayingInfo![MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime
-        player.play()
-        playerState = .playing
+        switch playerState {
+        case .playing:
+            player.pause()
+            playerState = .paused
+        case .paused:
+            player.play()
+            playerState = .playing
+        case .noTrack:
+            player.play()
+            playerState = .playing
+        }
     }
     
     func stop() {
@@ -110,18 +107,21 @@ class AudioManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
     }
     
     func play(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
-        unpause()
-         // Handle remote event by updating your app's state here
-         return .success // or .commandFailed
+        //play (from control center or lock screen)
+        playerState = .paused
+        togglePlayPaused()
+         return .success
     }
     
     func pause(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
-        pause()
-         // Handle remote event by updating your app's state here
-         return .success // or .commandFailed
+        //pause (from control center or lock screen)
+        playerState = .playing
+        togglePlayPaused()
+         return .success
     }
     
     func togglePlayPause(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
+        //toggles pause/play (from control center or lock screen)
         togglePlayPaused()
          // Handle remote event by updating your app's state here
          return .success // or .commandFailed
