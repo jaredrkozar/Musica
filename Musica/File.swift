@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class File {
+class File: Identifiable {
     var title: String
     var dateAdded: Date
     var path: String

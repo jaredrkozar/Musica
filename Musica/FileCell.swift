@@ -103,10 +103,7 @@ struct Icon: View {
             switch iconState {
             case .standardIcon(let iconName):
                 Image(systemName: iconName)
-                    .foregroundStyle(color)
-                    .aspectRatio(contentMode: .fit)
-                    .fontWeight(.semibold)
-                    .font(.system(size: iconSize.iconSize, weight: .light))
+                    .iconStyle(color: color, size: iconSize.iconSize)
             case .currentlyPlaying:
                 Image(systemName: "waveform")
                     .iconStyle(color: .white, size: iconSize.iconSize)
@@ -164,8 +161,8 @@ struct Title: ViewModifier {
     
     func body(content: Content) -> some View {
         content
+            .foregroundStyle(color)
             .aspectRatio(contentMode: .fit)
-            .fontWeight(.semibold)
-            .font(.system(size: iconSize, weight: .light))
+            .font(.system(size: iconSize, weight: .bold))
     }
 }

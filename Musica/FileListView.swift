@@ -49,7 +49,6 @@ struct FileListView: View {
                     .tint(.orange)
                 }
                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                    
                     Button(role: .destructive) {
                         do {
                             try FileManager.default.removeItem(at: URL(filePath: file.returnFilePath(), directoryHint: .notDirectory, relativeTo: .documentsDirectory))
@@ -112,14 +111,12 @@ struct FileListView: View {
               }
             }
             
-            .alert("An error occured", isPresented: $model.showError) {
+            .alert("An error occured while importing the file", isPresented: $model.showError) {
                  Button("OK", role: .cancel) {
-            
                  }
             } message: {
                 Text(model.error)
             }
-            
            .navigationTitle("Files")
         }
     }
