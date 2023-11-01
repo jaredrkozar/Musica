@@ -15,24 +15,7 @@ struct SelectFileIconView: View {
     @State var iconColor: Color
     
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 75), alignment: .top)]) {
-                
-                ForEach(allSymbols) { symbolSection in
-                    let filteredSymbols = symbolSection.symbols.filter({symbol in searchText.isEmpty ? true : symbol.lowercased().contains(searchText.lowercased())})
-                    
-                    Section(header: Text(symbolSection.sectionName).font(.title)) {
-                        ForEach(filteredSymbols, id: \.self) { symbolItem in
-                            SymbolCell(currentIcon: $currentIcon, image: symbolItem, iconColor: $iconColor)
-                                .fixedSize()
-                        }
-                    
-                 }
-                }
-            }
-        }
-        .accentColor(iconColor)
-        .searchable(text: $searchText)
+        Text("DLDLD")
     }
 }
 

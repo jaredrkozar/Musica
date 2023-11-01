@@ -7,20 +7,7 @@
 
 import Foundation
 
-struct SymbolSection: Hashable, Identifiable {
-    var id: Int
-    var sectionName: String
-    var symbols: [String]
-}
-
-let allSymbols: [SymbolSection] = [
-communicationSymbols,
-weatherSymbols,
-objectSymbols
-]
-
-let communicationSymbols = SymbolSection(id: 0, sectionName: "Communications", symbols: [
-        "mic",
+let communicationSymbols: [String] = ["mic",
         "mic.fill",
         "mic.circle",
         "mic.circle.fill",
@@ -145,9 +132,9 @@ let communicationSymbols = SymbolSection(id: 0, sectionName: "Communications", s
         "waveform.and.magnifyingglass",
         "waveform.and.mic",
         "recordingtape"
-])
+]
 
-let weatherSymbols = SymbolSection(id: 1, sectionName: "Weather", symbols: [
+let weatherSymbols: [String] = [
     "sun.min",
     "sun.min.fill",
     "sun.max",
@@ -220,10 +207,10 @@ let weatherSymbols = SymbolSection(id: 1, sectionName: "Weather", symbols: [
     "aqi.high",
     "humidity",
     "humidity.fill"
-])
+]
 
 
-let objectSymbols = SymbolSection(id: 2, sectionName: "Objects and Tools", symbols: [
+let objectSymbols: [String] = [
     "pencil",
     "pencil.circle",
     "pencil.circle.fill",
@@ -709,4 +696,4 @@ let objectSymbols = SymbolSection(id: 2, sectionName: "Objects and Tools", symbo
     "xmark.shield.fill",
     "checkmark.shield",
     "checkmark.shield.fill"
-])
+]

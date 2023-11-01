@@ -19,10 +19,10 @@ struct ImagePicker: UIViewRepresentable {
           layout.scrollDirection = .vertical
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-          collectionView.delegate = context.coordinator
         collectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
-        collectionView.delegate = context.coordinator
-        collectionView.dataSource = context.coordinator
+        collectionView.register(HeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCell.headerIdentifier)
+        
+        context.coordinator.collectionView = collectionView
         return collectionView
     }
     
@@ -34,38 +34,65 @@ struct ImagePicker: UIViewRepresentable {
         Coordinator(self)
     }
     
-    class Coordinator: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
-        var selected: String?
-        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return allSymbols[section].symbols.count
-        }
-        
-        func numberOfSections(in collectionView: UICollectionView) -> Int {
-            return allSymbols.count
-        }
-        
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.identifier, for: indexPath) as! ImageCollectionViewCell
-            
-            let imageToShow = allSymbols[indexPath.section].symbols[indexPath.item]
-            
-            cell.symbolName = imageToShow
+    class Coordinator: NSObject, UICollectionViewDelegate {
 
-            return cell
-        }
+        var collectionView: UICollectionView? {
+             didSet {
+                 applySnapshot()
+             }
+         }
         
-        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            self.parent.selectedIcon = allSymbols[indexPath.section].symbols[indexPath.item]
-            collectionView.reloadData()
-        }
+        private lazy var dataSource = configureDataSource()
         
+        var selected: String?
         var parent: ImagePicker
 
         init(_ parent: ImagePicker) {
             self.parent = parent
         }
         
+        private func configureDataSource() -> UICollectionViewDiffableDataSource<SymbolSections, String> {
+            let dataSource = UICollectionViewDiffableDataSource<SymbolSections, String>(collectionView: collectionView!) { (collectionView, indexPath, icon) -> ImageCollectionViewCell? in
+         
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.identifier, for: indexPath) as! ImageCollectionViewCell
+                cell.symbolName = icon
+                
+                return cell
+            }
+            
+            dataSource.supplementaryViewProvider = { (
+                collectionView: UICollectionView,
+                kind: String,
+                indexPath: IndexPath) -> UICollectionReusableView? in
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
+                                                                             withReuseIdentifier: HeaderCell.headerIdentifier,
+                                                                                     for: indexPath) as! HeaderCell
+                
+                header.backgroundColor = .lightGray
+         
+                header.headerTitle = "ll,lk,lk,"
+                return header
+            }
+            
+            collectionView?.delegate = self
+            return dataSource
+        }
         
+        enum SymbolSections: String, Hashable {
+            case communication = "Communication"
+            case weather = "Weather"
+            case objects = "Objects"
+        }
+        
+        func applySnapshot() {
+          
+            var snapshot = NSDiffableDataSourceSnapshot<SymbolSections, String>()
+            snapshot.appendSections([.communication, .weather, .objects])
+            snapshot.appendItems(communicationSymbols, toSection: .communication)
+            snapshot.appendItems(weatherSymbols, toSection: .weather)
+            snapshot.appendItems(objectSymbols, toSection: .objects)
+            dataSource.apply(snapshot, animatingDifferences: false)
+        }
     }
 }
 
@@ -104,6 +131,33 @@ class ImageCollectionViewCell: UICollectionViewCell {
     }
 }
 
+class HeaderCell: UICollectionReusableView {
+    static let headerIdentifier = "headerCellIdentifier"
+    
+    var headerTitle: String
+  
+    private let headerLabel: UILabel = {
+        let label = UILabel(frame: CGRect(x: 0, y: 5, width: 50, height: 30))
+        label.font = UIFont.preferredFont(forTextStyle: .title2)
+        label.textColor = .red
+        
+        return label
+    }()
+    
+    override func layoutSubviews() {
+        headerLabel.text = headerTitle
+    }
+    
+    override init(frame: CGRect) {
+        self.headerTitle = "LDDL"
+        super.init(frame: frame)
+        
+        // Add the imageView to the cell's content view
+        self.addSubview(headerLabel)
 
+    }
 
-
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
