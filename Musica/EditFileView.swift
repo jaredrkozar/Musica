@@ -89,6 +89,11 @@ struct FilePropertiesView: View {
             Section {
                 ColorPickerCell(currentColor: $fileColor)
                 
+                NavigationLink {
+                    ImagePicker(selectedIcon: $fileIcon)
+                } label: {
+                    Text("Image")
+                }
             } header: {
                 Text("Appearance")
             }
