@@ -55,7 +55,7 @@ struct CreateFileView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .confirmationAction) {
                     Button {
-                        let newFile = File(title: name, path: filePath.convertToCorrectPath(), color: iconColor, iconName: iconName)
+                        let newFile = File(title: name, path: filePath.convertToCorrectPath(), color: iconColor, iconName: iconName, gameSeries: "", gameName: "", composerName: "")
                         modelContext.insert(newFile)
                         dismiss()
                     } label: {
@@ -77,7 +77,7 @@ struct CreateFileView: View {
     }
 }
 
-struct FilePropertiesView: View {
+private struct FilePropertiesView: View {
     @Binding var fileTitle: String
     @Binding var fileColor: CustomColors
     @Binding var fileIcon: String
@@ -90,7 +90,7 @@ struct FilePropertiesView: View {
                 ColorPickerCell(currentColor: $fileColor)
                 
                 NavigationLink {
-                    ImagePicker(selectedIcon: $fileIcon)
+                    SelectFileIconView(currentIcon: $fileIcon, iconColor: fileColor.color)
                 } label: {
                     Text("Image")
                 }
@@ -111,6 +111,7 @@ extension URL {
     
     func convertToCorrectPath() -> String {
         let destinationURL = URL.documentDirectory.appendingPathComponent(self.lastPathComponent, conformingTo: self.pathExtension.getExtension())
+        
         let canAccessURL = self.startAccessingSecurityScopedResource()
         if canAccessURL {
             do {
@@ -122,8 +123,8 @@ extension URL {
         } else {
             print("You cannot access this URL right now")
         }
-        print("Destination URL \(destinationURL.absoluteString)")
-        return destinationURL.absoluteString
+        
+        return self.lastPathComponent
 
     }
 }

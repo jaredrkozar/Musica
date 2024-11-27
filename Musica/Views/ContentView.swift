@@ -8,30 +8,34 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var audioManager: AudioManager
+    @Environment(AudioManager.self) private var audioManager
     @Environment(ViewModel.self) private var viewModel
+    @StateObject var sheetCoordinator = SheetCoordinator<ArticleSheet>()
     
     var body: some View {
         ZStack {
             TabView {
-                FileListView(sort: viewModel.sortMethod, searchString: viewModel.searchText, order: viewModel.sortDirection)
+                FileListView()
                     .tabItem {
-                        Label("Files", systemImage: "star")
+                        Label("Files", systemImage: "list.bullet")
                     }
                 SettingsView()
                     .tabItem {
-                        Label("Tab2", systemImage: "star")
+                        Label("Settings", systemImage: "gear")
                     }
             }
-            if audioManager.playerState != .noTrack {
+            if audioManager.playerState != .noTrack && viewModel.searchText == "" {
                 VStack() {
                     Spacer()
                     MiniplayerView()
+                        .onTapGesture {
+                            sheetCoordinator.presentSheet(.fullPlayerView)
+                        }
 
                 }
             }
         }
-        
+        .sheetCoordinator(self.sheetCoordinator)
     }
 }
 
