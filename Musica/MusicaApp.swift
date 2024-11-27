@@ -8,18 +8,17 @@
 import SwiftUI
 import SwiftData
 
-
 @main
 struct MusicaApp: App {
-    @StateObject var audioManager = AudioManager()
-    @State private var viewModel = ViewModel()
+    @State var audioManager = AudioManager()
+    @State var viewModel = ViewModel()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .modelContainer(for: File.self)
         }
-        .modelContainer(for: File.self)
-        .environmentObject(audioManager)
+        .environment(audioManager)
         .environment(viewModel)
     }
 }

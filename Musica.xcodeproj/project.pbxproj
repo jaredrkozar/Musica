@@ -7,12 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02010F452CEDB4E900144354 /* UpNextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02010F442CEDB4E900144354 /* UpNextView.swift */; };
+		0241C3E32CCEF1A200F1ACF9 /* SongInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0241C3E22CCEF1A200F1ACF9 /* SongInfoView.swift */; };
 		0256E5522AE4F0E700776CC8 /* MiniplayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256E5512AE4F0E700776CC8 /* MiniplayerView.swift */; };
-		026DCD252AD07C4F000705B8 /* MusicaIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026DCD242AD07C4E000705B8 /* MusicaIcon.swift */; };
+		026DCD252AD07C4F000705B8 /* FileIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026DCD242AD07C4E000705B8 /* FileIcon.swift */; };
 		0286B00C2AEAD5AD0003D1C5 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0286B00B2AEAD5AD0003D1C5 /* ViewModel.swift */; };
 		0286B00E2AEAD5CD0003D1C5 /* SortfilesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0286B00D2AEAD5CD0003D1C5 /* SortfilesButton.swift */; };
 		029443C72ACA571B00F54609 /* SwiftData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029443C62ACA571B00F54609 /* SwiftData.swift */; };
 		029443C92ACB7BA300F54609 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029443C82ACB7BA300F54609 /* AudioManager.swift */; };
+		02D7F0432CF15959001197ED /* SheetCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D7F0422CF15959001197ED /* SheetCoordinator.swift */; };
+		02D7F0472CF297A7001197ED /* RouteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D7F0462CF297A7001197ED /* RouteButtonView.swift */; };
+		02D7F04C2CF2B1B6001197ED /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D7F04B2CF2B1B6001197ED /* CustomSlider.swift */; };
+		02D7F08D2CF3EBE5001197ED /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D7F08C2CF3EBE5001197ED /* CustomButton.swift */; };
 		02DD86A42AC904F700B1009D /* MusicaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86A32AC904F700B1009D /* MusicaApp.swift */; };
 		02DD86A62AC904F700B1009D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86A52AC904F700B1009D /* ContentView.swift */; };
 		02DD86A82AC904F800B1009D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02DD86A72AC904F800B1009D /* Assets.xcassets */; };
@@ -30,17 +36,39 @@
 		02DD86C72AC9DA3B00B1009D /* SymbolData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86C62AC9DA3B00B1009D /* SymbolData.swift */; };
 		02DD86C92AC9DB9700B1009D /* LinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86C82AC9DB9700B1009D /* LinkCell.swift */; };
 		02DD86CB2ACA040F00B1009D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD86CA2ACA040F00B1009D /* Color.swift */; };
+		02EE78A02CAFBE3500C987DB /* FullPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EE789F2CAFBE3500C987DB /* FullPlayerView.swift */; };
 		02FE7B362AE31CF80011FDB5 /* SelectIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FE7B352AE31CF80011FDB5 /* SelectIconView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0299C7952B2D054200B0641D /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		02010F442CEDB4E900144354 /* UpNextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpNextView.swift; sourceTree = "<group>"; };
+		0241C3E22CCEF1A200F1ACF9 /* SongInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongInfoView.swift; sourceTree = "<group>"; };
 		0256E5512AE4F0E700776CC8 /* MiniplayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniplayerView.swift; sourceTree = "<group>"; };
-		026DCD242AD07C4E000705B8 /* MusicaIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicaIcon.swift; sourceTree = "<group>"; };
-		0286B0082AE704F00003D1C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		026DCD242AD07C4E000705B8 /* FileIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileIcon.swift; sourceTree = "<group>"; };
+		0286B0082AE704F00003D1C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0286B00B2AEAD5AD0003D1C5 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		0286B00D2AEAD5CD0003D1C5 /* SortfilesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortfilesButton.swift; sourceTree = "<group>"; };
 		029443C62ACA571B00F54609 /* SwiftData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftData.swift; sourceTree = "<group>"; };
 		029443C82ACB7BA300F54609 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		0299C7862B2D054100B0641D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		0299C7882B2D054100B0641D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		02D7F0422CF15959001197ED /* SheetCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetCoordinator.swift; sourceTree = "<group>"; };
+		02D7F0462CF297A7001197ED /* RouteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteButtonView.swift; sourceTree = "<group>"; };
+		02D7F04B2CF2B1B6001197ED /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
+		02D7F08C2CF3EBE5001197ED /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		02DD86A02AC904F700B1009D /* Musica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Musica.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02DD86A32AC904F700B1009D /* MusicaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicaApp.swift; sourceTree = "<group>"; };
 		02DD86A52AC904F700B1009D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,6 +87,7 @@
 		02DD86C62AC9DA3B00B1009D /* SymbolData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolData.swift; sourceTree = "<group>"; };
 		02DD86C82AC9DB9700B1009D /* LinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkCell.swift; sourceTree = "<group>"; };
 		02DD86CA2ACA040F00B1009D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		02EE789F2CAFBE3500C987DB /* FullPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPlayerView.swift; sourceTree = "<group>"; };
 		02FE7B352AE31CF80011FDB5 /* SelectIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectIconView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,10 +102,63 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0299C7852B2D054100B0641D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0299C7862B2D054100B0641D /* WidgetKit.framework */,
+				0299C7882B2D054100B0641D /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		02D7F0482CF29868001197ED /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				02DD86A52AC904F700B1009D /* ContentView.swift */,
+				02DD86B92AC9211200B1009D /* EditFileView.swift */,
+				02DD86B32AC9079900B1009D /* FileListView.swift */,
+				02EE789F2CAFBE3500C987DB /* FullPlayerView.swift */,
+				0256E5512AE4F0E700776CC8 /* MiniplayerView.swift */,
+				02FE7B352AE31CF80011FDB5 /* SelectIconView.swift */,
+				0241C3E22CCEF1A200F1ACF9 /* SongInfoView.swift */,
+				02D7F0462CF297A7001197ED /* RouteButtonView.swift */,
+				02DD86C42AC9D9E800B1009D /* SelectFileIconView.swift */,
+				02DD86B52AC907A200B1009D /* SettingsView.swift */,
+				0286B00D2AEAD5CD0003D1C5 /* SortfilesButton.swift */,
+				02010F442CEDB4E900144354 /* UpNextView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		02D7F0492CF298A5001197ED /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				02DD86C02AC9542700B1009D /* CustomColors.swift */,
+				02DD86B12AC9050900B1009D /* File.swift */,
+				026DCD242AD07C4E000705B8 /* FileIcon.swift */,
+				02D7F0422CF15959001197ED /* SheetCoordinator.swift */,
+				02DD86C62AC9DA3B00B1009D /* SymbolData.swift */,
+				029443C62ACA571B00F54609 /* SwiftData.swift */,
+				02D7F04B2CF2B1B6001197ED /* CustomSlider.swift */,
+				02D7F08C2CF3EBE5001197ED /* CustomButton.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		02D7F04A2CF298C8001197ED /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				029443C82ACB7BA300F54609 /* AudioManager.swift */,
+				0286B00B2AEAD5AD0003D1C5 /* ViewModel.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		02DD86972AC904F700B1009D = {
 			isa = PBXGroup;
 			children = (
 				02DD86A22AC904F700B1009D /* Musica */,
+				0299C7852B2D054100B0641D /* Frameworks */,
 				02DD86A12AC904F700B1009D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,25 +174,12 @@
 		02DD86A22AC904F700B1009D /* Musica */ = {
 			isa = PBXGroup;
 			children = (
-				0286B0082AE704F00003D1C5 /* Info.plist */,
-				02DD86C62AC9DA3B00B1009D /* SymbolData.swift */,
-				02FE7B352AE31CF80011FDB5 /* SelectIconView.swift */,
 				02DD86A32AC904F700B1009D /* MusicaApp.swift */,
-				029443C82ACB7BA300F54609 /* AudioManager.swift */,
-				026DCD242AD07C4E000705B8 /* MusicaIcon.swift */,
-				02DD86A52AC904F700B1009D /* ContentView.swift */,
-				0256E5512AE4F0E700776CC8 /* MiniplayerView.swift */,
-				02DD86B72AC9088500B1009D /* FileCell.swift */,
-				02DD86B32AC9079900B1009D /* FileListView.swift */,
-				0286B00B2AEAD5AD0003D1C5 /* ViewModel.swift */,
-				0286B00D2AEAD5CD0003D1C5 /* SortfilesButton.swift */,
-				029443C62ACA571B00F54609 /* SwiftData.swift */,
-				02DD86B92AC9211200B1009D /* EditFileView.swift */,
-				02DD86C42AC9D9E800B1009D /* SelectFileIconView.swift */,
-				02DD86C02AC9542700B1009D /* CustomColors.swift */,
+				0286B0082AE704F00003D1C5 /* Info.plist */,
+				02D7F0492CF298A5001197ED /* Models */,
+				02D7F0482CF29868001197ED /* Views */,
+				02D7F04A2CF298C8001197ED /* Managers */,
 				02DD86BD2AC9217900B1009D /* Cells */,
-				02DD86B52AC907A200B1009D /* SettingsView.swift */,
-				02DD86B12AC9050900B1009D /* File.swift */,
 				02DD86CC2ACA041300B1009D /* Extensions */,
 				02DD86A72AC904F800B1009D /* Assets.xcassets */,
 				02DD86A92AC904F800B1009D /* Preview Content */,
@@ -129,10 +198,11 @@
 		02DD86BD2AC9217900B1009D /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				02DD86BB2AC9217100B1009D /* TextCell.swift */,
-				02DD86C82AC9DB9700B1009D /* LinkCell.swift */,
 				02DD86BE2AC926F500B1009D /* ColorPickerCdll.swift */,
 				02DD86C22AC9D98F00B1009D /* CustomViewCell.swift */,
+				02DD86B72AC9088500B1009D /* FileCell.swift */,
+				02DD86C82AC9DB9700B1009D /* LinkCell.swift */,
+				02DD86BB2AC9217100B1009D /* TextCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -155,6 +225,7 @@
 				02DD869C2AC904F700B1009D /* Sources */,
 				02DD869D2AC904F700B1009D /* Frameworks */,
 				02DD869E2AC904F700B1009D /* Resources */,
+				0299C7952B2D054200B0641D /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -218,15 +289,22 @@
 				02DD86B62AC907A200B1009D /* SettingsView.swift in Sources */,
 				029443C72ACA571B00F54609 /* SwiftData.swift in Sources */,
 				02DD86B42AC9079900B1009D /* FileListView.swift in Sources */,
+				0241C3E32CCEF1A200F1ACF9 /* SongInfoView.swift in Sources */,
+				02D7F08D2CF3EBE5001197ED /* CustomButton.swift in Sources */,
 				029443C92ACB7BA300F54609 /* AudioManager.swift in Sources */,
 				0256E5522AE4F0E700776CC8 /* MiniplayerView.swift in Sources */,
+				02D7F04C2CF2B1B6001197ED /* CustomSlider.swift in Sources */,
+				02010F452CEDB4E900144354 /* UpNextView.swift in Sources */,
 				02DD86BA2AC9211200B1009D /* EditFileView.swift in Sources */,
 				02DD86C52AC9D9E800B1009D /* SelectFileIconView.swift in Sources */,
 				02DD86C32AC9D98F00B1009D /* CustomViewCell.swift in Sources */,
 				02DD86C92AC9DB9700B1009D /* LinkCell.swift in Sources */,
 				02DD86A62AC904F700B1009D /* ContentView.swift in Sources */,
+				02D7F0432CF15959001197ED /* SheetCoordinator.swift in Sources */,
+				02EE78A02CAFBE3500C987DB /* FullPlayerView.swift in Sources */,
+				02D7F0472CF297A7001197ED /* RouteButtonView.swift in Sources */,
 				02DD86BF2AC926F500B1009D /* ColorPickerCdll.swift in Sources */,
-				026DCD252AD07C4F000705B8 /* MusicaIcon.swift in Sources */,
+				026DCD252AD07C4F000705B8 /* FileIcon.swift in Sources */,
 				02FE7B362AE31CF80011FDB5 /* SelectIconView.swift in Sources */,
 				0286B00E2AEAD5CD0003D1C5 /* SortfilesButton.swift in Sources */,
 				0286B00C2AEAD5AD0003D1C5 /* ViewModel.swift in Sources */,
@@ -365,6 +443,7 @@
 		02DD86AF2AC904F800B1009D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -395,6 +474,7 @@
 		02DD86B02AC904F800B1009D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
