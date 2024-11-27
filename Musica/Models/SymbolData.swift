@@ -9,10 +9,11 @@ import Foundation
 
 let icons: [IconFilter] = [
     IconFilter(filterName: "Communcation", filterIcon: "mic", icons: communicationSymbols),
-    IconFilter(filterName: "Objects", filterIcon: "folder", icons: objectSymbols)
+    IconFilter(filterName: "Objects", filterIcon: "folder", icons: objectSymbols),
+    IconFilter(filterName: "Weather", filterIcon: "cloud.sun", icons: objectSymbols)
 ]
 
-struct IconFilter: Identifiable {
+struct IconFilter: Identifiable, Hashable {
     var id = UUID()
     
     var filterName: String

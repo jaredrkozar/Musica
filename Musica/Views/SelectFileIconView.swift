@@ -13,18 +13,32 @@ struct SelectFileIconView: View {
     @Binding var currentIcon: String
     @State private var searchText = ""
     @State var iconColor: Color
-    @State var selectedFilter: IconFilter?
+    @State private var selectedFilter: IconFilter? = nil {
+        willSet {
+            if newValue?.filterName == selectedFilter?.filterName {
+                selectedFilter = nil
+            } else {
+                selectedFilter = newValue
+            }
+        }
+    }
     
     var body: some View {
+        
         ScrollView(.horizontal) {
-            ForEach(icons) { icon in
-                Button {
-                    selectedFilter = icon
-                } label: {
-                    IconFilterCell(filter: icon, activeFilter: $selectedFilter, iconColor: iconColor)
+            HStack {
+                ForEach(icons) { filter in
+                    Button {
+                        selectedFilter = filter
+                       
+                    } label: {
+                        IconFilterCell(filter: filter, activeFilter: $selectedFilter, iconColor: iconColor)
+                    }
+                    .padding(3)
                 }
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: 20, alignment: .topLeading)
     }
 }
 
@@ -39,41 +53,19 @@ struct IconFilterCell: View {
     
     var body: some View {
         HStack {
-            Text(filter.filterName)
-                .foregroundStyle(isFilterSelected ? .white : iconColor)
             
-            Image(systemName: filter.filterIcon)
-                .foregroundColor(iconColor)
+            Text(filter.filterName)
+            
+            Image(systemName: isFilterSelected ? "multiply.circle" : filter.filterIcon)
         }
-        .background(isFilterSelected ? iconColor : .clear)
+        .foregroundColor(isFilterSelected ? .white : iconColor)
         .padding(10)
+        .background(isFilterSelected ? iconColor : .clear)
+        .cornerRadius(20)
         .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(iconColor, lineWidth: 4)
-            )
-    }
-}
-
-struct SymbolCell: View {
-    @Binding var currentIcon: String
-    @State var image: String
-    @State var iconColor: Color
-    
-    var body: some View {
-        Button {
-            currentIcon = image
-        } label: {
-            Image(systemName: image)
-                .font(.system(size: 45, weight: .medium))
-                .padding(15)
-        }
-        .cornerRadius(15.0)
-        .overlay(
-            RoundedRectangle(cornerRadius: 15)
-                .stroke(iconColor, lineWidth: currentIcon == image ? 4.0 : 0.0)
-                .background(currentIcon == image ? iconColor.opacity(0.25) : .clear)
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(iconColor, lineWidth: 4)
         )
+      
     }
 }
-
-

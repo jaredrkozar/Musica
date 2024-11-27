@@ -8,63 +8,88 @@
 import SwiftUI
 
 struct FullPlayerView: View {
-    @Environment(AudioManager.self) private var audioManager
-    @Environment(ViewModel.self) private var viewModel
+    @Environment(AudioManager.self) var audioManager
     @StateObject var sheetCoordinator = SheetCoordinator<ArticleSheet>()
+    @State var progress: TimeInterval = .zero
+    @State var isScrubbing: Bool = false
+    
+    private let timer = Timer.publish(every: 0.05, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 100) {
-            VStack {
-                FileIcon(color: audioManager.currentFile!.color.color, icon: .standardIcon(iconName: "pin"), iconSize: .large)
-                    .foregroundStyle(.green)
+        @Bindable var audio = audioManager
+        
+        GeometryReader { bounds in
+            VStack(alignment: .center) {
+                VStack {
+                    FileIcon(color: audioManager.currentFile!.color.color, icon: .standardIcon(iconName: audioManager.currentFile!.iconName), iconSize: .large)
+                        .foregroundStyle(.green)
+                        
+                    Text(audioManager.currentFile!.title)
+                        .truncationMode(.tail)
+                        .font(.title3)
+                        .bold()
+                        .lineLimit(1)
+                }
+                
+//                Spacer()
+                
+                VStack {
+                    CustomSlider(sliderValue: $progress, sliderActive: $isScrubbing) { percent in
+                        isScrubbing = false
+                        progress = percent
+                        audioManager.goToTimestamp(time: percent * audioManager.totalDuration)
+                    }
+                    .frame(maxHeight: 15)
                     
-                Text(audioManager.currentFile!.title)
-                    .truncationMode(.tail)
-                    .font(.title3)
-                    .bold()
-                    .lineLimit(1)
+                    HStack {
+                        Text("\(audioManager.currentPlaybackTime.convert())")
+                        
+                        Spacer()
+                        
+                        Text("-\(audioManager.songTimeRemaining ?? "0:00")")
+                    }
+                }
+                
+                Spacer()
+                
+                HStack(spacing: 40) {
+                    CustomButton(isScrubbing: $isScrubbing, iconName: "backward.fill") {
+                        audioManager.rewind()
+                    }
+                    
+                    CustomButton(isScrubbing: $isScrubbing, iconName: audioManager.playerState == .paused ?  "play.fill" : "pause.fill") {
+                        audioManager.togglePlayPause()
+                    }
+                    
+                    CustomButton(isScrubbing: $isScrubbing, iconName: "forward.fill") {
+                        audioManager.fastForward()
+                    }
+                }
+
+                Spacer()
+                
+                HStack(spacing: 40) {
+                    CustomButton(isScrubbing: $isScrubbing, iconName: "info.circle") {
+                        sheetCoordinator.presentSheet(.songInfoView)
+                    }
+                    
+                    RouteButtonView()
+                    
+                    CustomButton(isScrubbing: $isScrubbing, iconName: "list.bullet") {
+                        sheetCoordinator.presentSheet(.upNextView)
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: 20)
             }
-            
-            HStack(spacing: 40) {
-                Image(systemName: "backward.fill")
-                    .font(.largeTitle)
-                
-                Button {
-                    audioManager.togglePlayPause()
-                } label: {
-                    Image(systemName: audioManager.playerState == .paused ?  "play.fill" : "pause.fill")
-                        .font(.largeTitle)
-                }
-                
-                Button {
-                    audioManager.fastForward()
-                } label: {
-                    Image(systemName: "forward.fill")
-                        .font(.largeTitle)
-                }
-            }
-            
-            HStack(spacing: 40) {
-                Button {
-                    sheetCoordinator.presentSheet(.songInfoView)
-                } label: {
-                    Image(systemName: "info.circle")
-                        .font(.largeTitle)
-                }
-                
-                RouteButtonView()
-                    .frame(height: 50)
-                
-                Button {
-                    sheetCoordinator.presentSheet(.upNextView)
-                } label: {
-                    Image(systemName: "list.bullet")
-                        .font(.largeTitle)
-                }
-            }
-            .frame(maxWidth: .infinity, maxHeight: 50)
+            .padding(EdgeInsets(top: 20, leading: 24, bottom: 12, trailing: 24))
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .onReceive(timer) { _ in
+            if !isScrubbing {
+                progress = audioManager.currentPlaybackTime / audioManager.totalDuration
+            }
+            audioManager.updateProgress()
+        }
         .sheetCoordinator(self.sheetCoordinator)
     }
 }

@@ -63,7 +63,7 @@ internal enum ArticleSheet: SheetEnum {
     func view(coordinator: SheetCoordinator<ArticleSheet>) -> some View {
         switch self {
         case .addFile(let url):
-            CreateFileView(name: url.deletingPathExtension().lastPathComponent, iconName: "pin", iconColor: .red, filePath: url)
+            CreateFileView(name: url.deletingPathExtension().lastPathComponent, iconName: "music.note", iconColor: .red, filePath: url)
                 .presentationDetents([.medium])
         case .editFile(let file):
             EditFileView(file: file)

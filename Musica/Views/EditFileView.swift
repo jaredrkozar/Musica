@@ -40,7 +40,7 @@ struct EditFileView: View {
 struct CreateFileView: View {
     @Environment(\.modelContext) var modelContext
     @State var name: String = ""
-    @State var iconName: String = "pin"
+    @State var iconName: String = "music.note"
     @State var iconColor: CustomColors = .red
     @State var filePath: URL
     
@@ -90,7 +90,7 @@ private struct FilePropertiesView: View {
                 ColorPickerCell(currentColor: $fileColor)
                 
                 NavigationLink {
-                    SelectFileIconView(currentIcon: $fileIcon, iconColor: fileColor.color)
+                    ImagePicker(selectedIcon: $fileIcon)
                 } label: {
                     Text("Image")
                 }
