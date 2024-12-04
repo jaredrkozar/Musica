@@ -12,6 +12,7 @@ struct ContentView: View {
     @Environment(SettingsManager.self) var settingsManager
     @Environment(ViewModel.self) private var viewModel
     @StateObject var sheetCoordinator = SheetCoordinator<ArticleSheet>()
+    @State private var isTargeted: Bool = false
     
     var body: some View {
         ZStack {
@@ -26,6 +27,7 @@ struct ContentView: View {
                     }
             }
             .tint(settingsManager.tintColor.color)
+
             
             if audioManager.playerState != .noTrack && viewModel.searchText == "" {
                 VStack() {
@@ -34,6 +36,13 @@ struct ContentView: View {
                         .onTapGesture {
                             sheetCoordinator.presentSheet(.fullPlayerView)
                         }
+                        .dropDestination(for: File.self) { items, location in
+                            for item in items {
+                                print(item.title)
+                                audioManager.playLastInQueue(file: item)
+                            }
+                             return true
+                         }
 
                 }
             }

@@ -38,8 +38,9 @@ struct FileListView: View {
         @Bindable var model = viewModel
         
         NavigationStack {
-            List(files, id: \.self, selection: $selectedFiles) { file in
+            List(files, id: \.id, selection: $selectedFiles) { file in
                 FileCell(file: file)
+                    .draggable(file)
                     .onTapGesture {
                         audioManager.currentFile = file
                     }

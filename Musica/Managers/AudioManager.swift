@@ -251,6 +251,10 @@ enum PlayerState {
         fileQueue = fileQueue.shuffled()
     }
     
+    func clearQueue() {
+        fileQueue.removeAll()
+    }
+    
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         if repeatSong == false && !fileQueue.isEmpty {
             fastForward()
