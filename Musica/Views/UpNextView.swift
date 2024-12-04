@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UpNextView: View {
     @Environment(AudioManager.self) private var audioManager
+    @Environment(SettingsManager.self) var settingsManager
     
     var body: some View {
         @Bindable var audio = audioManager
@@ -25,8 +26,8 @@ struct UpNextView: View {
                         Label("Shuffle", systemImage: "shuffle")
                     }
                     .buttonStyle(UpNextButtonStyle())
-                    .foregroundColor(.blue)
-                    .background(Color.blue.quaternary)
+                    .foregroundColor(settingsManager.tintColor.color)
+                    .background(settingsManager.tintColor.color.quaternary)
                     .cornerRadius(16)
                     
                     Spacer()
@@ -37,7 +38,7 @@ struct UpNextView: View {
                         Label("Repeat", systemImage: "repeat.1")
                     }
                     .buttonStyle(UpNextButtonStyle())
-                    .foregroundColor(.blue)
+                    .foregroundColor(settingsManager.tintColor.color)
                     .background(audio.repeatSong ? Color.blue.quaternary : Color.clear.quaternary)
                     .cornerRadius(16)
                 }
@@ -65,6 +66,7 @@ struct UpNextView: View {
             .toolbar {
                  EditButton()
                     .disabled(audioManager.fileQueue.isEmpty)
+                    .foregroundStyle(settingsManager.tintColor.color)
              }
             .navigationTitle("Queue")
             .navigationBarTitleDisplayMode(.inline)

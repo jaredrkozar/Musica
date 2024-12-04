@@ -9,46 +9,67 @@ import SwiftUI
 
 struct FullPlayerView: View {
     @Environment(AudioManager.self) var audioManager
+    @Environment(SettingsManager.self) var settingsManager
     @StateObject var sheetCoordinator = SheetCoordinator<ArticleSheet>()
     @State var progress: TimeInterval = .zero
     @State var isScrubbing: Bool = false
     
     private let timer = Timer.publish(every: 0.05, on: .main, in: .common).autoconnect()
     
+    var discViewPlayer: some View {
+        return DiscView(sliderValue: $progress, sliderActive: $isScrubbing) { percent in
+            isScrubbing = false
+            progress = percent
+            audioManager.goToTimestamp(time: percent * audioManager.totalDuration)
+        }
+        .frame(maxHeight: 300)
+    }
+    
+    var scrubberPlayer: some View {
+        return VStack {
+            FileIcon(color: audioManager.currentFile!.color.color, icon: .standardIcon(iconName: audioManager.currentFile!.iconName), iconSize: .large)
+                .foregroundStyle(.green)
+            
+            VStack {
+                CustomSlider(sliderValue: $progress, sliderActive: $isScrubbing) { percent in
+                    isScrubbing = false
+                    progress = percent
+                    audioManager.goToTimestamp(time: percent * audioManager.totalDuration)
+                }
+                .frame(maxHeight: 15)
+                
+                HStack {
+                    Text("\(audioManager.currentPlaybackTime.convert())")
+                    
+                    Spacer()
+                    
+                    Text("-\(audioManager.songTimeRemaining ?? "0:00")")
+                }
+            }
+        }
+    }
+    
     var body: some View {
         @Bindable var audio = audioManager
+        @Bindable var settings = settingsManager
         
         GeometryReader { bounds in
             VStack(alignment: .center) {
-                VStack {
-                    FileIcon(color: audioManager.currentFile!.color.color, icon: .standardIcon(iconName: audioManager.currentFile!.iconName), iconSize: .large)
-                        .foregroundStyle(.green)
-                        
-                    Text(audioManager.currentFile!.title)
-                        .truncationMode(.tail)
-                        .font(.title3)
-                        .bold()
-                        .lineLimit(1)
+                
+                switch settings.playerView {
+                    case .scrubber:
+                        scrubberPlayer
+                    case .disc:
+                        discViewPlayer
                 }
                 
-//                Spacer()
+                Spacer()
                 
-                VStack {
-                    CustomSlider(sliderValue: $progress, sliderActive: $isScrubbing) { percent in
-                        isScrubbing = false
-                        progress = percent
-                        audioManager.goToTimestamp(time: percent * audioManager.totalDuration)
-                    }
-                    .frame(maxHeight: 15)
-                    
-                    HStack {
-                        Text("\(audioManager.currentPlaybackTime.convert())")
-                        
-                        Spacer()
-                        
-                        Text("-\(audioManager.songTimeRemaining ?? "0:00")")
-                    }
-                }
+                Text(audioManager.currentFile!.title)
+                    .truncationMode(.tail)
+                    .font(.title3)
+                    .bold()
+                    .lineLimit(1)
                 
                 Spacer()
                 

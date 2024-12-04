@@ -18,6 +18,7 @@ struct FileListView: View {
     @State var selectedFiles = Set<File>()
     @State var sort: SortMethods = .title
     @State var order: SortOrder = .reverse
+    @Environment(SettingsManager.self) var settingsManager
     
     init() {
 //        print(sort)
@@ -105,12 +106,14 @@ struct FileListView: View {
                         Label("Sort", systemImage: "arrow.up.arrow.down")
                     }
                     .pickerStyle(.automatic)
+                    .tint(settingsManager.tintColor.color)
                     
                     Button {
                         model.showFileImportMenu = true
                     } label: {
                         Image(systemName: "plus")
                     }
+                    .foregroundStyle(settingsManager.tintColor.color)
                 }
             }
             

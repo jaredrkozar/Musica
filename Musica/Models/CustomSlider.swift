@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CustomSlider: View {
+    @Environment(SettingsManager.self) var settingsManager
     @Binding var sliderValue: Double
     @Binding var sliderActive: Bool
     @GestureState private var isActive: Bool = false
@@ -17,9 +18,9 @@ struct CustomSlider: View {
         GeometryReader { bounds in
             ZStack(alignment: .leading) {
                 Capsule()
-                    .fill(.blue.tertiary)
+                    .fill(settingsManager.tintColor.color.tertiary)
                 Capsule()
-                    .fill(.blue)
+                    .fill(settingsManager.tintColor.color)
                     .frame(width: sliderValue * 360)
             }
             .frame(maxWidth: 360, maxHeight: isActive ? 15 : 10)

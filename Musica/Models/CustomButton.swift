@@ -10,6 +10,7 @@ import SwiftUI
 
 struct CustomButton: View {
     @Binding var isScrubbing: Bool
+    @Environment(SettingsManager.self) var settingsManager
     
     let iconName: String
     let action: () -> Void
@@ -23,5 +24,6 @@ struct CustomButton: View {
             Image(systemName: iconName)
                 .font(.largeTitle)
         }
+        .foregroundStyle(settingsManager.tintColor.color)
     }
 }

@@ -164,6 +164,7 @@ enum PlayerState {
     }
     
     func playSongCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
+        print("play song")
         playSong()
         
          // Handle remote event by updating your app's state here
@@ -171,6 +172,7 @@ enum PlayerState {
     }
     
     func pauseSongCommand(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
+        print("pause song")
         pauseSong()
         
          // Handle remote event by updating your app's state here

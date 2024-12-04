@@ -12,6 +12,7 @@ import SwiftData
 struct MusicaApp: App {
     @State var audioManager = AudioManager()
     @State var viewModel = ViewModel()
+    @State var settingsModel = SettingsManager()
     
     var body: some Scene {
         WindowGroup {
@@ -19,6 +20,7 @@ struct MusicaApp: App {
                 .modelContainer(for: File.self)
         }
         .environment(audioManager)
+        .environment(settingsModel)
         .environment(viewModel)
     }
 }

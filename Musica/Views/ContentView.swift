@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(AudioManager.self) private var audioManager
+    @Environment(SettingsManager.self) var settingsManager
     @Environment(ViewModel.self) private var viewModel
     @StateObject var sheetCoordinator = SheetCoordinator<ArticleSheet>()
     
@@ -24,6 +25,8 @@ struct ContentView: View {
                         Label("Settings", systemImage: "gear")
                     }
             }
+            .tint(settingsManager.tintColor.color)
+            
             if audioManager.playerState != .noTrack && viewModel.searchText == "" {
                 VStack() {
                     Spacer()
