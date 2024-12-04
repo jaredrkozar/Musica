@@ -54,6 +54,7 @@ struct DiscView: View {
                     .stroke(settingsManager.tintColor.color ,style: StrokeStyle(lineWidth: 35.0, lineCap: .round, lineJoin: .round))
                     .rotationEffect(Angle(degrees: 270.0))
                     .animation(.linear, value: 1.0)
+                
                     .gesture(DragGesture(minimumDistance: 0.5, coordinateSpace: .local)
                         .updating($isActive) { value, state, transaction in
                             state = true
