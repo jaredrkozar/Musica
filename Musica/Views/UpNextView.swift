@@ -10,7 +10,43 @@ import SwiftUI
 struct UpNextView: View {
     @Environment(AudioManager.self) private var audioManager
     @Environment(SettingsManager.self) var settingsManager
+    @State var showClearQueueAlert: Bool = false
     
+    var upNextQueue: some View {
+        return VStack {
+            HStack {
+                Text("Up Next")
+                    .bold()
+                    .font(.title3)
+                
+                Spacer()
+                
+                Button(role: .destructive) {
+                    showClearQueueAlert = true
+                } label: {
+                    Text("Clear")
+                }
+            }
+    
+            List {
+                ForEach(audioManager.fileQueue, id: \.self) { file in
+                    FileCell(file: file)
+                }
+                .onMove { from, to in
+                    audioManager.moveItemInQueue(fromIndex: from, toIndex: to)
+                }
+                .onDelete { indexSet in
+                    audioManager.removeFromQueue(index: indexSet)
+                }
+            }
+        }
+        .alert("Are you sure you want to clear your queue?", isPresented: $showClearQueueAlert) {
+            Button("Clear Queue", role: .destructive) {
+                audioManager.clearQueue()
+            }
+            Button("OK", role: .cancel) { }
+        }
+    }
     var body: some View {
         @Bindable var audio = audioManager
         NavigationStack {
@@ -43,34 +79,21 @@ struct UpNextView: View {
                     .cornerRadius(16)
                 }
             }
-            
-            List {
-                if audioManager.fileQueue.isEmpty {
-                    ContentUnavailableView("No Songs in Queue", systemImage: "waveform.slash", description: Text("Add songs to the queue by swiping right on a file"))
-                } else {
-                    Text("Up Next")
-                        .bold()
-                        .font(.title3)
-                    
-                    ForEach(audioManager.fileQueue, id: \.self) { file in
-                        FileCell(file: file)
-                    }
-                    .onMove { from, to in
-                        audioManager.moveItemInQueue(fromIndex: from, toIndex: to)
-                    }
-                    .onDelete { indexSet in
-                        audioManager.removeFromQueue(index: indexSet)
-                    }
-                }
+                
+            if audioManager.fileQueue.isEmpty {
+                ContentUnavailableView("No Songs in Queue", systemImage: "waveform.slash", description: Text("Add songs to the queue by swiping right on a file"))
+            } else {
+                upNextQueue
             }
-            .toolbar {
-                 EditButton()
-                    .disabled(audioManager.fileQueue.isEmpty)
-                    .foregroundStyle(settingsManager.tintColor.color)
-             }
-            .navigationTitle("Queue")
-            .navigationBarTitleDisplayMode(.inline)
+            
         }
+        .navigationTitle("Queue")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+             EditButton()
+                .disabled(audioManager.fileQueue.isEmpty)
+                .foregroundStyle(settingsManager.tintColor.color)
+         }
     }
 }
 
